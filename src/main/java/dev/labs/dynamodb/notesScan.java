@@ -51,7 +51,11 @@ public class notesScan {
         //Build Scan specification with Filter expression, Values, list of attributes to project
 
         // TODO 4 BEGIN
-        
+        ScanSpec scanSpec = new ScanSpec()
+                .withFilterExpression("contains (Note, :v_txt)")
+                .withValueMap(new ValueMap().withString(":v_txt", searchText))
+                .withProjectionExpression("UserId, NoteId, Note");
+
         // TODO 4 END
 
         //Limit the response Page size
@@ -70,7 +74,7 @@ public class notesScan {
             System.out.println("\nPage: " + ++pageNum);
 
             // TODO 6 BEGIN
-            
+            Iterator<Item> item = page.iterator();
             // TODO 6 END
             
             
